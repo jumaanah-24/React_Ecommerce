@@ -2,7 +2,8 @@ import ProductCard from "./ProductCard";
 
 const ProductList = ({products,onAddToCart }) => {
     return (
-        <div className="w-3/4 mx-auto flex gap-6 flex-wrap p-10">
+        <div className="w-full mx-auto flex flex-wrap gap-6 p-10 justify-center">
+
             {products.map((product) => (
     <ProductCard 
         key={product._id}

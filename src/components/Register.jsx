@@ -34,10 +34,10 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
+    <div className="mt-50 flex items-center justify-center bg-slate-100">
       <form
         onSubmit={submit}
-        className="w-[340px] bg-white p-6 rounded shadow"
+        className="w-100 h-70 bg-blue-200 p-6 rounded-lg shadow-xl hover:scale-105 transition-transform duration-300"
       >
         <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
 
@@ -59,7 +59,7 @@ const Register = () => {
           <option value="admin">Admin</option>
         </select>
 
-        <button className="w-full py-2 bg-blue-600 text-white rounded">
+        <button className="w-full py-2 bg-blue-600 text-white rounded mt-5">
           Register
         </button>
       </form>

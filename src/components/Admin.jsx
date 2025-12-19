@@ -26,8 +26,8 @@ const Admin = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 w-150 rounded-xl" style={{backgroundImage:"url('https://i.pinimg.com/1200x/99/a7/c6/99a7c63a82775544a718c2496b6d8bd9.jpg')",}}>
+      <div className="max-w-md w-100">
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">Add New Product</h2>
           <form onSubmit={handleSubmit} className="space-y-4">

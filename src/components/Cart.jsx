@@ -1,8 +1,9 @@
 import CartItem from "./CartItems";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router";
 
 const Cart = () => {
-    const { cart, removeFromCart, updateQuantity } = useCart();
+    const { cart, removeFromCart, updateQuantity, buyNow } = useCart();
 
     const total = cart.reduce((sum, item) => {
         return sum + (item.sellingprice * item.quantity);
@@ -43,6 +44,14 @@ const Cart = () => {
                                 <p className="font-bold">Final Amount</p>
                                 <p className="font-bold text-blue-600">₹{total}</p>
                             </div>
+                            <Link to="/orders">
+                            <button
+                                onClick={buyNow}
+                                className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hover:bg-green-700 transition duration-300"
+                            >
+                                Place Order
+                            </button>
+                            </Link>
                         </div>
                     </div>
                 )}

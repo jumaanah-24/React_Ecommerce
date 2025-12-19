@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import {toast} from "react-toastify";
+import { Link } from "react-router";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -46,11 +47,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <form
+    <>
+   <div
+  className="mt-50  flex items-center justify-center"
+>   <form
         onSubmit={submit}
-        className="w-[340px] bg-white p-6 rounded shadow"
-      >
+        className="w-100 h-70 bg-blue-200 p-6 rounded-lg shadow-xl hover:scale-105 transition-transform duration-300">
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
 
         <input
@@ -70,13 +72,16 @@ const Login = () => {
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
-
-        <button className="w-full py-2 bg-blue-600 text-white rounded">
+      <Link to="/products">
+        <button className="w-full py-2 bg-blue-600 text-white rounded mt-5">
           Log In
         </button>
+        </Link>
       </form>
     </div>
+    </>
   );
 };
+
 
 export default Login;

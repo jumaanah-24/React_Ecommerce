@@ -5,7 +5,7 @@ const HomeLayout = () => {
     <div className="min-h-screen flex flex-col">
       <header className="bg-blue-600 text-white p-4">
         <nav className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-bold">TodaysHop</h1>
+          <h1 className="text-3xl font-bold">TodaysHop</h1>
           <div className="flex gap-4">
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
@@ -13,6 +13,7 @@ const HomeLayout = () => {
             <Link to="/orders">Orders</Link>
             <Link to="/admin">Admin</Link>
             <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </div>
         </nav>
       </header>
@@ -20,7 +21,7 @@ const HomeLayout = () => {
         <Outlet />
       </main>
       <footer className="bg-slate-900 text-white text-center p-3">
-         {new Date().getFullYear()} TodaysHop. All rights reserved.
+         {new Date().getFullYear()} @TodaysHop. All rights reserved.
       </footer>
     </div>
   );

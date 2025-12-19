@@ -12,15 +12,16 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      setToken(storedToken);
+      setToken(storedToken.trim());
       setIsAuthenticated(true);
       // Optionally decode token to get user info
     }
   }, []);
 
   const login = (token, userData) => {
-    localStorage.setItem('token', token);
-    setToken(token);
+    const cleanToken = token.trim();
+    localStorage.setItem('token', cleanToken);
+    setToken(cleanToken);
     setUser(userData);
     setIsAuthenticated(true);
   };

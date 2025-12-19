@@ -30,11 +30,11 @@ createRoot(document.getElementById('root')).render(
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/orders" element={<ProtectedRoute><Orders/></ProtectedRoute>}/>
         <Route path="/admin" element={<AdminRoute><Admin/></AdminRoute>}/>
-
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
 
     </Route>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/register" element={<Register/>}/>
+    
 </Routes>
     </BrowserRouter>
 </CartProvider>

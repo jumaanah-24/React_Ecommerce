@@ -1,52 +1,19 @@
-// import React from "react";
-
-// const Orders = () => {
-//   const orders = [
-//     { id: "Laptop", date: "2025-02-17", total: 40000, status: "Delivered",image:"https://5.imimg.com/data5/SELLER/Default/2021/3/YE/VN/KU/112920323/hp-laptop-500x500.jpg" },
-//     { id: "Airpods", date: "2025-07-14", total: 500, status: "On the way",image:"https://media.tatacroma.com/Croma%20Assets/Entertainment/Wireless%20Earbuds/Images/262016_okfsmf.png" },
-//   ];
-
-//   return (
-//     <div>
-//       <h2 className="text-2xl font-bold mb-4">Previous Orders</h2>
-
-//       {orders.length === 0 ? (
-//         <p className="text-slate-600">No previous orders found</p>
-//       ) : (
-//         <div className="space-y-3">
-//           {orders.map((o) => (
-//             <div key={o.id} className="p-4 bg-white rounded shadow flex justify-between items-center w-100 h-60 transition duration-400 hover:scale-105">
-//               <div>
-//                 <img src={o.image} alt={o.id} className="w-40 h-40 object-cover mb-2"/>
-//                 <div className="font-semibold">{o.id}</div>
-//                 <div className="text-sm text-slate-500">{o.date}  {o.status}</div>
-//               </div>
-//               <div className="font-bold">₹{o.total}</div>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Orders;
-
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const Orders = () => {
+  const { token } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = sessionStorage.getItem("token");
-        const res = await fetch("http://localhost:3000/orders", {
-          headers: token ? { Authorization: token } : {},
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:2000/orders", {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
         if (res.status === 401) {
-          // not logged in or token invalid
           setOrders([]);
           return;
         }
@@ -62,6 +29,43 @@ const Orders = () => {
     };
     fetchOrders();
   }, []);
+
+  const handleDeleteProduct = async (orderId, itemIndex) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`http://localhost:2000/orders/${orderId}/items/${itemIndex}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error('Failed to delete item');
+
+      setOrders(orders.map(order => {
+        if (order.id === orderId) {
+          order.items.splice(itemIndex, 1);
+        }
+        return order;
+      }));
+    } catch (err) {
+      alert('Failed to delete item');
+    }
+  };
+
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`http://localhost:2000/orders/${orderId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error('Failed to delete order');
+
+      setOrders(orders.filter(order => order.id !== orderId));
+    } catch (err) {
+      alert('Failed to delete order');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -85,8 +89,17 @@ const Orders = () => {
                     <p className="text-sm text-gray-500">{new Date(order.date).toLocaleString()}</p>
                   </div>
                   <div className="text-right">
+                    <button
+                      onClick={() => handleDeleteOrder(order.id)}
+                      className="text-red-500 hover:text-red-700 text-sm mb-2"
+                    >
+                      Delete Order
+                    </button>
                     <p className="text-lg font-bold">₹{order.total}</p>
                     <p className="text-sm text-gray-500">{order.items?.length || 0} items</p>
+                    <p className={`text-sm font-medium ${order.status === 'Processing' ? 'text-yellow-600' : 'text-green-600'}`}>
+                      {order.status || 'Delivered'}
+                    </p>
                   </div>
                 </div>
 
@@ -99,8 +112,16 @@ const Orders = () => {
                           <p className="font-semibold">{it.name || it.product?.name}</p>
                           <p className="text-sm text-gray-500">Qty: {it.quantity ?? it.qty ?? 1}</p>
                         </div>
-                        <div className="text-right">
-                          <p className="font-medium">₹{(it.sellingprice || it.price || it.product?.sellingprice) ?? 0}</p>
+                        <div className="text-right flex items-center gap-3">
+                          <div>
+                            <p className="font-medium">₹{(it.sellingprice || it.price || it.product?.sellingprice) ?? 0}</p>
+                          </div>
+                          <button
+                            onClick={() => handleDeleteProduct(order.id, idx)}
+                            className="text-red-500 hover:text-red-700 text-sm"
+                          >
+                            Delete
+                          </button>
                         </div>
                       </div>
                     ))}

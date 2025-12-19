@@ -41,7 +41,7 @@ const Home = () => {
           </div>
 
           <div className="text-center">
-            <Link to="/products">
+            <Link to="/login">
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
                 Shop Now
               </button>
