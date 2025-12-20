@@ -15,7 +15,7 @@ export const ProductsProvider = ({ children }) => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:2000/products');
+            const response = await fetch('https://react-ecomm-backend.onrender.com');
             const data = await response.json();
             setProducts(data);
         } catch (error) {

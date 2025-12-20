@@ -10,7 +10,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:2000/orders", {
+        const res = await fetch("https://react-ecomm-backend.onrender.com/orders", {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
         if (res.status === 401) {

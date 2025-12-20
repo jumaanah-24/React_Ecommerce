@@ -11,7 +11,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:2000/auth/register", {
+      const response = await fetch("https://react-ecomm-backend.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

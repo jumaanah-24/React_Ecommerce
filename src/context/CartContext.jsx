@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const res = await fetch("http://localhost:2000/carts", {
+      const res = await fetch("https://react-ecomm-backend.onrender.com/carts", {
         headers,
       });
 
@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const res = await fetch("http://localhost:2000/carts", {
+      const res = await fetch("https://react-ecomm-backend.onrender.com/carts", {
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:2000/carts/${productId}`, {
+      const res = await fetch(`https://react-ecomm-backend.onrender.com/carts/${productId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${cleanToken}`,
@@ -115,7 +115,7 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:2000/carts/${productId}`, {
+      const res = await fetch(`https://react-ecomm-backend.onrender.com/carts/${productId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -170,7 +170,7 @@ export const CartProvider = ({ children }) => {
       total
     };
 
-    const res = await fetch("http://localhost:2000/orders", {
+    const res = await fetch("https://react-ecomm-backend.onrender.com/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

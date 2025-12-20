@@ -7,7 +7,7 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:2000/products', {
+      const response = await fetch('https://react-ecomm-backend.onrender.com/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ const Products = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:2000/products")
+        fetch("https://react-ecomm-backend.onrender.com/products")
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.error(err));
