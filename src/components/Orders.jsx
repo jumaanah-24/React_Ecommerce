@@ -9,7 +9,11 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`);
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
         if (!res.ok) throw new Error("Failed to fetch orders");
         const data = await res.json();
         setOrders(data);
@@ -20,8 +24,12 @@ const Orders = () => {
         setLoading(false);
       }
     };
-    fetchOrders();
-  }, []);
+    if (token) {
+      fetchOrders();
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
 
   const handleDeleteProduct = async (orderId, itemIndex) => {
     try {
