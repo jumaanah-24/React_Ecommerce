@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://react-ecomm-backend.onrender.com/auth/login", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

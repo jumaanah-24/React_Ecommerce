@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const res = await fetch("https://react-ecomm-backend.onrender.com/carts", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/carts`, {
         headers,
       });
 
@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const res = await fetch("https://react-ecomm-backend.onrender.com/carts", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/carts`, {
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`https://react-ecomm-backend.onrender.com/carts/${productId}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/carts/${productId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${cleanToken}`,
@@ -115,7 +115,7 @@ export const CartProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`https://react-ecomm-backend.onrender.com/carts/${productId}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/carts/${productId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

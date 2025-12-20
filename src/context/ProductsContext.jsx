@@ -15,7 +15,7 @@ export const ProductsProvider = ({ children }) => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('https://react-ecomm-backend.onrender.com');
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`);
             const data = await response.json();
             setProducts(data);
         } catch (error) {

@@ -10,7 +10,7 @@ const Products = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("https://react-ecomm-backend.onrender.com/products")
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/products`)
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.error(err));

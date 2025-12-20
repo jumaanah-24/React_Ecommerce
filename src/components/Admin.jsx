@@ -7,7 +7,7 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://react-ecomm-backend.onrender.com/products', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
