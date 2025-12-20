@@ -9,14 +9,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        });
-        if (res.status === 401) {
-          setOrders([]);
-          return;
-        }
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`);
         if (!res.ok) throw new Error("Failed to fetch orders");
         const data = await res.json();
         setOrders(data);
