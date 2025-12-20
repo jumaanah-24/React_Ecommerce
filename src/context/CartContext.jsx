@@ -168,12 +168,16 @@ export const CartProvider = ({ children }) => {
       total
     };
 
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (cleanToken) {
+      headers.Authorization = `Bearer ${cleanToken}`;
+    }
+
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${cleanToken}`,
-      },
+      headers,
       body: JSON.stringify(orderData),
     });
 
