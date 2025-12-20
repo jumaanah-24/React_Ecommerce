@@ -144,10 +144,11 @@ export const CartProvider = ({ children }) => {
   }
 
   const cleanToken = token?.trim();
-  if (!cleanToken) {
-    alert("Please login to place an order");
-    return;
-  }
+  // Allow placing order even without token for demo purposes
+  // if (!cleanToken) {
+  //   alert("Please login to place an order");
+  //   return;
+  // }
 
   const total = cart.reduce((sum, item) => sum + (item.sellingprice * item.quantity), 0);
 
