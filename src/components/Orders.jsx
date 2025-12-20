@@ -33,7 +33,7 @@ const Orders = () => {
   const handleDeleteProduct = async (orderId, itemIndex) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:2000/orders/${orderId}/items/${itemIndex}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders/${orderId}/items/${itemIndex}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -54,7 +54,7 @@ const Orders = () => {
   const handleDeleteOrder = async (orderId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:2000/orders/${orderId}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders/${orderId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
