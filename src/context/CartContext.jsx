@@ -81,18 +81,15 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = async (productId) => {
-    const cleanToken = token?.trim();
-    if (!cleanToken) {
-      toast.error("Please login to remove items from cart");
-      return;
-    }
-
     try {
+      const headers = {};
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/carts/${productId}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${cleanToken}`,
-        },
+        headers,
       });
 
       if (!res.ok) {
