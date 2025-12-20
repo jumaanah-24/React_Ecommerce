@@ -170,7 +170,7 @@ export const CartProvider = ({ children }) => {
       total
     };
 
-    const res = await fetch("https://react-ecomm-backend.onrender.com/orders", {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
