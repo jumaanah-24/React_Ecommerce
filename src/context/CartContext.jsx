@@ -83,7 +83,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = async (productId) => {
     const cleanToken = token?.trim();
     if (!cleanToken) {
-      console.log("No token found");
+      toast.error("Please login to remove items from cart");
       return;
     }
 
@@ -110,7 +110,7 @@ export const CartProvider = ({ children }) => {
   const updateQuantity = async (productId, quantity) => {
     const cleanToken = token?.trim();
     if (!cleanToken) {
-      console.log("No token found");
+      toast.error("Please login to update cart items");
       return;
     }
 
