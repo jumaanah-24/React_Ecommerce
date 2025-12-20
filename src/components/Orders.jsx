@@ -107,14 +107,14 @@ const Orders = () => {
                   <div className="md:col-span-2 space-y-4">
                     {order.items && order.items.map((it, idx) => (
                       <div key={idx} className="flex items-center gap-4 border border-gray-100 p-3 rounded">
-                        <img src={it.image || it.product?.image} alt={it.name || it.product?.name} className="w-20 h-20 object-contain rounded" />
+                        <img src={it.image} alt={it.name} className="w-20 h-20 object-contain rounded" />
                         <div className="flex-1">
-                          <p className="font-semibold">{it.name || it.product?.name}</p>
+                          <p className="font-semibold">{it.name}</p>
                           <p className="text-sm text-gray-500">Qty: {it.quantity ?? it.qty ?? 1}</p>
                         </div>
                         <div className="text-right flex items-center gap-3">
                           <div>
-                            <p className="font-medium">₹{(it.sellingprice || it.price || it.product?.sellingprice) ?? 0}</p>
+                            <p className="font-medium">₹{(it.sellingprice || it.price) ?? 0}</p>
                           </div>
                           <button
                             onClick={() => handleDeleteProduct(order.id, idx)}
